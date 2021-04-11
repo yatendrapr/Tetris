@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef034868b5cc55a4c811c7dd27f6a19d, type: 3}
   m_Name: Tetromino Boundary Variables
   m_EditorClassIdentifier: 
-  negativeXBoundary: -1.7547
-  positiveXBoundary: 4.323
+  positiveXBoundary: 13.5
+  negativeXBoundary: 3.5
   negativeYBoundary: 0
   positiveYBoundary: 0

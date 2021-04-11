@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83cff91d4d3a6c64cb7e9169dd0be446, type: 3}
   m_Name: Tetris Grid
   m_EditorClassIdentifier: 
+  minoMovementScriptableObject: {fileID: 11400000, guid: c23f2dcc147d385448007e488555d7b0,
+    type: 2}

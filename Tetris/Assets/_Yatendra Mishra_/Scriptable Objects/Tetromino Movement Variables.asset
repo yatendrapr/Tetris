@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31f7fd594150d7548a73e7ce329b6983, type: 3}
   m_Name: Tetromino Movement Variables
   m_EditorClassIdentifier: 
-  minoSpeed: 1
-  distanceToDisplaceVertical: -0.675
-  distanceToDisplaceHorizontal: 0.6753
+  minoFallDownTime: 1
+  distanceToDisplaceVertical: -1
+  distanceToDisplaceHorizontal: 1

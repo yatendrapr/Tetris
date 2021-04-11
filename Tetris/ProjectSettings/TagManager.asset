@@ -41,6 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Environment
+    uniqueID: 1804171637
+    locked: 0
   - name: Minos
     uniqueID: 444160297
     locked: 0
