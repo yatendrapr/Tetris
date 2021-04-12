@@ -20,7 +20,6 @@ public class TetrisGridScriptableObject : ScriptableObject
     //Grid
     private Transform[,] tetrisGrid = new Transform[noOfRow, noOfCol];
 
-
     public void InitializeGrid()
     {
         for (int i = 0; i < noOfRow; i++)
@@ -79,15 +78,14 @@ public class TetrisGridScriptableObject : ScriptableObject
         return gridPositionOccupied;
     }
 
-    /*This function checks wheter any of the rows are completly occupied, and if they are, it deletes the entire row 
+    /*This function checks whether any of the rows are completly occupied, and if they are, it deletes the entire row 
       and clears the tetris grid of the points which were occupied by the full row*/
     public void CheckIfRowFull()
     {
         int transformCount = 0;
         //fullCount keeps track of how many rows has been cleared
         int fullCount = 0;
-        int[] clearedRow = new int[noOfRow];
-        int clearedRowIndex = 0;
+        List<int> clearedRow = new List<int>();
         for (int i = 0; i < noOfRow; i++)
         {
             for (int j = 4; j <= (noOfCol - 2); j++)
@@ -98,7 +96,7 @@ public class TetrisGridScriptableObject : ScriptableObject
             if (transformCount == 10)
             {
                 fullCount++;
-                clearedRow[clearedRowIndex++] = i;
+                clearedRow.Add(i);
                 //This loop deletes the entire row//
                 for (int j = 4; j <= (noOfCol - 2); j++)
                 {
@@ -113,89 +111,100 @@ public class TetrisGridScriptableObject : ScriptableObject
         }
         if (fullCount > 0)
             //Calling the function from here ensures that the all the full row has been deleted and their respective grid points have been reset.
-            RearrangeTetrisGrid(clearedRow);
+            RearrangeTetrisGrid(clearedRow.ToArray());
     }
 
-    //Functionality not yet completed
-    //Under Debug
     //This function will rearrange all the remaining minos that were not cleared in CheckIfRowFull() func
     private void RearrangeTetrisGrid(int[] clearedRow)
     {
-        int currentFullRow = 0, rowMultiplier = 0;
-        for (int i = 0; i < (clearedRow.Length - 1); i++)
+        Transform localTransform = null;
+        Dictionary<int, int> clearedRowDictionary = GetRowsToClearDictonary(clearedRow);
+        int[] rowsToClear = new List<int>(clearedRowDictionary.Keys).ToArray();
+        int[] rowsToClearMultiplier = new List<int>(clearedRowDictionary.Values).ToArray();
+        for (int i = rowsToClear.Length - 1; i >= 0; i--)
         {
-            if (clearedRow[i + 1] - clearedRow[i] == 1)
+            for (int j = rowsToClear[i]; j < noOfRow; j++)
             {
-                currentFullRow = clearedRow[i + 1];
-                rowMultiplier++;
-                continue;
-            }
-            else
-            {
-                Transform localTransform = null;
-                for (int k = currentFullRow + 1; k < noOfRow; k++)
+                for (int k = 4; k <= (noOfCol - 2); k++)
                 {
-                    for (int j = 4; j <= (noOfCol - 2); j++)
+                    if (tetrisGrid[j, k] != null)
                     {
-                        if (tetrisGrid[i, j] != null)
-                        {
-                            localTransform = tetrisGrid[i, j];
-                            RemoveFromGridChild(tetrisGrid[i, j]);
-                            localTransform.position += new Vector3(0f, minoMovementScriptableObject.distanceToDisplaceVertical * (rowMultiplier + 1), 0f);
-                            AddToGridChild(localTransform);
-                        }
+                        localTransform = tetrisGrid[j, k];
+                        RemoveFromGridChild(tetrisGrid[j, k]);
+                        localTransform.position += new Vector3(0f, minoMovementScriptableObject.distanceToDisplaceVertical * rowsToClearMultiplier[i], 0f);
+                        AddToGridChild(localTransform);
                     }
+                    else
+                        continue;
                 }
             }
         }
-
     }
 
-    //Functionality not Completed
-    //Under Debug
-    private void GetDictonary(int[] clearedRow)
+    /*This function checks for sequencing in the clearedRow array, and it clears the sequencing to get a single integer which is 1 int bigger than the last sequencing number, and
+    for non-sequencing number it gives 1 int bigger, it then adds the numbers acquired from this function and adds it to a dictonary<int,int>, whose key holds the row from which 
+    the grid should be cleared, and a multiplier that holds the number of times the rows has to come down
+    Example -
+    Input - 01245 <= clearedRow which is given as parameter for the function
+    Output - [0] = (3,3)
+             [1] = (6,2)
+    */
+    private Dictionary<int, int> GetRowsToClearDictonary(int[] clearedRow)
     {
-        int currentFullRow = 0;
-        int rowMultiplier = 0;
-        Dictionary<int, int> rowToClearDictonary = new Dictionary<int, int>();
+        int size = clearedRow.Length;
+        int localMultiplier = 0;
+        //This dictionary keeps record of key and value, where key is, from which row to start decrementing, and value is, how much should the row de
+        Dictionary<int, int> clearRowDictonary = new Dictionary<int, int>();
 
-        switch (clearedRow.Length)
+        switch (size)
         {
-            case 0:
-                //yet to be implemented
-                break;
             case 1:
-                //yet to be implemented
+                clearRowDictonary.Add(clearedRow[0] + 1, localMultiplier + 1);
+                break;
+            case 2:
+                if (clearedRow[1] - clearedRow[0] == 1)
+                {
+                    clearRowDictonary.Add(clearedRow[1] + 1, localMultiplier + 2);
+                }
+                else
+                {
+                    clearRowDictonary.Add(clearedRow[0] + 1, localMultiplier + 1);
+                    clearRowDictonary.Add(clearedRow[1] + 1, localMultiplier + 1);
+                }
                 break;
             default:
-                for (int i = 0; i < clearedRow.Length; i++)
+                for (int i = 0; i < size - 1; i++)
                 {
-                    if ((i + 1) == (clearedRow.Length - 1))
+                    if ((i + 1) == (size - 1))
                     {
-                        if ((clearedRow[i] - clearedRow[i - 1]) == 1 && (clearedRow[i + 1] - clearedRow[i]) == 1)
+                        if ((clearedRow[i + 1] - clearedRow[i]) == 1)
                         {
-                            currentFullRow = clearedRow[i + 1];
-                            rowMultiplier = clearedRow[i + 1] + 1;
-                        }
-
-                    }
-                    else
-                    {
-                        if (clearedRow[i + 1] - clearedRow[i] == 1)
-                        {
-                            currentFullRow = clearedRow[i + 1];
-                            rowMultiplier = clearedRow[i + 1] + 1;
+                            localMultiplier++;
+                            clearRowDictonary.Add((clearedRow[i + 1] + 1), localMultiplier + 1);
                         }
                         else
                         {
-                            rowToClearDictonary.Add(++currentFullRow, ++rowMultiplier);
-                            currentFullRow = 0;
-                            rowMultiplier = 0;
+                            clearRowDictonary.Add(clearedRow[i] + 1, localMultiplier + 1);
+                            localMultiplier = 0;
+                            clearRowDictonary.Add(clearedRow[i + 1] + 1, localMultiplier + 1);
+                        }
+                    }
+                    else
+                    {
+                        if ((clearedRow[i + 1] - clearedRow[i]) == 1)
+                        {
+                            localMultiplier++;
+                        }
+                        else
+                        {
+                            clearRowDictonary.Add(clearedRow[i] + 1, localMultiplier + 1);
+                            localMultiplier = 0;
                         }
                     }
                 }
                 break;
         }
+        return clearRowDictonary;
     }
 
     /*this function checks whether the (((int)value +1) - value) is less than differenceInPosition. The reason for doing this is sometimes 

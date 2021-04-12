@@ -170,7 +170,12 @@ MonoBehaviour:
   minoSpawnPoint: {fileID: 1564370128}
   minos:
   - {fileID: 4155673983866655157, guid: bcfe7e64ffadccc419923f2bd94ef202, type: 3}
+  - {fileID: 389041542290751375, guid: 8c7c24d7a8f9b5a48816ede1af112a2f, type: 3}
+  - {fileID: 2265020440499141967, guid: 51e2cf47410b1fb47a77bb6c26ff1623, type: 3}
   - {fileID: 523414102792927848, guid: f5c0f073815a0704db31d8632e26652b, type: 3}
+  - {fileID: 3678055831758906064, guid: 0c49aba0bb8ae74489cfd31e7de600ea, type: 3}
+  - {fileID: 8140896370188870833, guid: bdc9a1f40fdacd24686ad8af5411ceb3, type: 3}
+  - {fileID: 7043499226697195364, guid: 947af75e7aaa70641a4c0dba37e85245, type: 3}
 --- !u!114 &216444118
 MonoBehaviour:
   m_ObjectHideFlags: 0
