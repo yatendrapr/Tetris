@@ -15,4 +15,4 @@ MonoBehaviour:
   positiveXBoundary: 13.5
   negativeXBoundary: 3.5
   negativeYBoundary: 0
-  positiveYBoundary: 0
+  positiveYBoundary: 20

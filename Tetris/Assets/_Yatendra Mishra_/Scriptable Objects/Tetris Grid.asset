@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minoMovementScriptableObject: {fileID: 11400000, guid: c23f2dcc147d385448007e488555d7b0,
     type: 2}
+  rowClearGameEvent: {fileID: 11400000, guid: 5f8cd1f4d04620f4f9d284e20fcc0058, type: 2}

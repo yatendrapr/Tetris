@@ -374,4 +374,5 @@ MonoBehaviour:
   minoMovement: {fileID: 11400000, guid: c23f2dcc147d385448007e488555d7b0, type: 2}
   tetrisGrid: {fileID: 11400000, guid: c09696c075904b14abc93ab0bae04a98, type: 2}
   tetrominoBoundary: {fileID: 11400000, guid: ef8717b7d5b8925489ca0ee46824fbed, type: 2}
+  gameOverEvent: {fileID: 11400000, guid: 542f3c1afb5f0eb4eb1383e25684ba8e, type: 2}
   rotationPointFromPivot: {x: 0.5, y: 0.5, z: 0}

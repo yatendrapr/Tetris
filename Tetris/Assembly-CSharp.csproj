@@ -67,12 +67,32 @@
     <Compile Include="Assets\_Yatendra Mishra_\Scripts\GameController.cs" />
     <Compile Include="Assets\_Yatendra Mishra_\Scripts\GameEvent.cs" />
     <Compile Include="Assets\_Yatendra Mishra_\Scripts\GameEventListener.cs" />
+    <Compile Include="Assets\_Yatendra Mishra_\Scripts\GameScriptableObject.cs" />
     <Compile Include="Assets\_Yatendra Mishra_\Scripts\MinoMovement.cs" />
-    <Compile Include="Assets\_Yatendra Mishra_\Scripts\MinoMovementScriptableObject.cs" />
+    <Compile Include="Assets\_Yatendra Mishra_\Scripts\MinoMovementVariablesScriptableObject.cs" />
     <Compile Include="Assets\_Yatendra Mishra_\Scripts\MinosSpawner.cs" />
     <Compile Include="Assets\_Yatendra Mishra_\Scripts\TetrisBoundaryScriptableObject.cs" />
+    <Compile Include="Assets\_Yatendra Mishra_\Scripts\TetrisBoundaryVariablesScriptableObject.cs" />
     <Compile Include="Assets\_Yatendra Mishra_\Scripts\TetrisGridScriptableObject.cs" />
-    <Compile Include="Assets\_Yatendra Mishra_\Scripts\TetrominoBoundaryScriptableObject.cs" />
+    <Compile Include="Assets\_Yatendra Mishra_\Scripts\uiController.cs" />
+    <None Include="Assets\_Yatendra Mishra_\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
+    <None Include="Assets\_Yatendra Mishra_\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
+    <None Include="Assets\_Yatendra Mishra_\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
+    <None Include="Assets\_Yatendra Mishra_\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
+    <None Include="Assets\_Yatendra Mishra_\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
+    <None Include="Assets\_Yatendra Mishra_\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
+    <None Include="Assets\_Yatendra Mishra_\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
+    <None Include="Assets\_Yatendra Mishra_\TextMesh Pro\Resources\Shaders\TMP_SDF.shader" />
+    <None Include="Assets\_Yatendra Mishra_\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
+    <None Include="Assets\_Yatendra Mishra_\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
+    <None Include="Assets\_Yatendra Mishra_\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
+    <None Include="Assets\_Yatendra Mishra_\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+    <None Include="Assets\_Yatendra Mishra_\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />
+    <None Include="Assets\_Yatendra Mishra_\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
+    <None Include="Assets\_Yatendra Mishra_\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
+    <None Include="Assets\_Yatendra Mishra_\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
+    <None Include="Assets\_Yatendra Mishra_\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
+    <None Include="Assets\_Yatendra Mishra_\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

@@ -6,12 +6,20 @@ public class TetrisGridScriptableObject : ScriptableObject
 {
     //Global Variables
     //Scriptable object references
-    [SerializeField] private MinoMovementScriptableObject minoMovementScriptableObject = null;
+    [SerializeField] private MinoMovementVariablesScriptableObject minoMovementScriptableObject = null;
+
+    //Game Events
+    [SerializeField] private GameEvent rowClearGameEvent = null;
 
     //Local Variables
     //Grid Variables
     private const int noOfCol = 15;
     private const int noOfRow = 27;
+
+    //Row Start Point
+    //These are the starting and end point(x-axis) of the grid which correspondss with the global position
+    private const int xStartingPoint = 4;
+    private const int xEndPoint = 13;
 
     //Constants
     private const float differenceInPosition = 0.1f;
@@ -85,10 +93,11 @@ public class TetrisGridScriptableObject : ScriptableObject
         int transformCount = 0;
         //fullCount keeps track of how many rows has been cleared
         int fullCount = 0;
+        //clearedRow stores all the row that are full 
         List<int> clearedRow = new List<int>();
         for (int i = 0; i < noOfRow; i++)
         {
-            for (int j = 4; j <= (noOfCol - 2); j++)
+            for (int j = xStartingPoint; j <= xEndPoint; j++)
             {
                 if (tetrisGrid[i, j] != null)
                     transformCount++;
@@ -98,12 +107,14 @@ public class TetrisGridScriptableObject : ScriptableObject
                 fullCount++;
                 clearedRow.Add(i);
                 //This loop deletes the entire row//
-                for (int j = 4; j <= (noOfCol - 2); j++)
+                for (int j = xStartingPoint; j <= xEndPoint; j++)
                 {
                     Transform localTransform = tetrisGrid[i, j];
                     RemoveFromGridChild(tetrisGrid[i, j]);
                     Destroy(localTransform.gameObject);
                 }
+                //This Game Event increments the score after a successful row clear
+                rowClearGameEvent.RaiseEvent();
                 transformCount = 0;
             }
             else
@@ -125,7 +136,7 @@ public class TetrisGridScriptableObject : ScriptableObject
         {
             for (int j = rowsToClear[i]; j < noOfRow; j++)
             {
-                for (int k = 4; k <= (noOfCol - 2); k++)
+                for (int k = xStartingPoint; k <= xEndPoint; k++)
                 {
                     if (tetrisGrid[j, k] != null)
                     {

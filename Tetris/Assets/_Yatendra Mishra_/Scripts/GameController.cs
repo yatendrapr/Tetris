@@ -4,7 +4,10 @@ public class GameController : MonoBehaviour
 {
     //Global Variables
     //Scriptable Object Refrences
-    public TetrisGridScriptableObject TetrisGrid = null;
+    [SerializeField] private TetrisGridScriptableObject TetrisGrid = null;
+
+    //Game Events
+    public GameScriptableObject gameVariables = null; 
 
     //Initializes the grid. Each element is initialized with null.
     private void Start()
@@ -16,5 +19,6 @@ public class GameController : MonoBehaviour
     private void OnDestroy()
     {
         TetrisGrid.ResetGrid();
+        gameVariables.ResetCurrentScore();
     }
 }
