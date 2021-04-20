@@ -2,15 +2,16 @@
 using TMPro;
 using UnityEngine.UI;
 
-public class uiController : MonoBehaviour
+public class UiController : MonoBehaviour
 {
     //Global Varibles
     //Scriptable Object Refrences
-    [SerializeField] private GameScriptableObject gameVariables = null;
+    [SerializeField] private ScoreScriptableObject gameVariables = null;
     [SerializeField] private GameObject gameOverPanel = null;
 
     //Image Fields
     [SerializeField] private Image nextMinoImage = null;
+    [SerializeField] private Sprite[] tetroMinoImages = null;
 
     //Text Fields
     [SerializeField] private TextMeshProUGUI scoreText = null;
@@ -18,14 +19,16 @@ public class uiController : MonoBehaviour
     public void AddScoreAndDisplay()
     {
         gameVariables.AddScore();
-        scoreText.text =  $"Score :\n {gameVariables.currentSessionScore}" ;
+        scoreText.text =  $"Score :\n {gameVariables.CurrentSessionScore}" ;
     }
 
-    //Yet to be completed
-    /*Right now the next mino image is not linked to any image, only the next mino gameobject is stored, after completing the image for the minos and storing them. 
-     The linking part will be done */
     public void DisplayGameOver()
     {
         gameOverPanel.SetActive(true);
+    }
+
+    public void DisplayNextMinoImage()
+    {
+        nextMinoImage.sprite = tetroMinoImages[MinosSpawner.SpawnedMinoIndex];
     }
 }

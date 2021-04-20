@@ -2,22 +2,26 @@
 
 public class MinoMovement : MonoBehaviour
 {
-    //Global Variables
+    //Global Variables//
+
     //Scriptable Objects Refrences
     [SerializeField] private MinoMovementVariablesScriptableObject minoMovement = null;
     [SerializeField] private TetrisGridScriptableObject tetrisGrid = null;
     [SerializeField] private TetrisBoundaryScriptableObject tetrominoBoundary = null;
 
-    //Game Event Variables
+    //Game Event 
     [SerializeField] private GameEvent gameOverEvent = null;
 
-    //Local Variables
+    //Local Variables//
+
     //Time Variable
     private float currentTime = 0f;
 
     //Rotation Variable
     [SerializeField] private Vector3 rotationPointFromPivot = Vector3.zero;
 
+    //Fast Move key Variables
+    private bool fastMoveKeyPressed = false;
 
     /*Current time is initialized here, because by the time the spawner spawns a mino the move down time has already started, 
     and the mino will go down one unit as soon as it spawns*/
@@ -34,94 +38,115 @@ public class MinoMovement : MonoBehaviour
 
     private void Update()
     {
-        CheckForFastMoveKeyPress();
+        CheckForFastMoveDown();
+        CheckForSingleMoveDown();
         RotateTetrimino();
         MoveLeftOrRight();
     }
 
-    //Game Over is just displayed on console, will link it to a game over scene or a panel
-    private void CheckForFastMoveKeyPress()
+    private void CheckForFastMoveDown()
     {
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKey(KeyCode.Space))
         {
-            MoveDown(true);
-            tetrisGrid.RemoveFromGridParent(this.transform);
-            this.transform.position += new Vector3(0f, minoMovement.distanceToDisplaceVertical, 0f);
-            if (tetrisGrid.CheckIfGridPositionOccupied(this.transform) || !tetrominoBoundary.IsInsideBoundary(this.transform))
-            {
-                this.transform.position += new Vector3(0f, -minoMovement.distanceToDisplaceVertical, 0f);
-                if(!tetrominoBoundary.CheckIfGridExceed(this.transform))
-                {
-                    tetrisGrid.AddToGridParent(this.transform);
-                    tetrisGrid.CheckIfRowFull();
-                    MinosSpawner.spawnMino = true;
-                    this.enabled = false;
-                }
-                else
-                {
-                    gameOverEvent.RaiseEvent();
-                }
-                
-            }
-            else
-                tetrisGrid.AddToGridParent(this.transform);
+            fastMoveKeyPressed = true;
+            MoveDown(false, true);
         }
         else
-            MoveDown();
+        {
+            fastMoveKeyPressed = false;
+            MoveDown(false, false);
+        }
+    }
+
+    private void CheckForSingleMoveDown()
+    {
+        if(!fastMoveKeyPressed)
+        {
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                MoveDown(true);
+                tetrisGrid.RemoveFromGridParent(this.transform);
+                this.transform.position += new Vector3(0f, minoMovement.DistanceToDisplaceVertical, 0f);
+                if (tetrisGrid.CheckIfGridPositionOccupied(this.transform) || !tetrominoBoundary.IsInsideBoundary(this.transform))
+                {
+                    this.transform.position += new Vector3(0f, -minoMovement.DistanceToDisplaceVertical, 0f);
+                    if (!tetrominoBoundary.CheckIfGridExceed(this.transform))
+                    {
+                        tetrisGrid.AddToGridParent(this.transform);
+                        tetrisGrid.DeleteFullRowsAndRearrange();
+                        MinosSpawner.SpawnMino = true;
+                        this.enabled = false;
+                    }
+                    else
+                    {
+                        gameOverEvent.RaiseEvent();
+                    }
+
+                }
+                else
+                    tetrisGrid.AddToGridParent(this.transform);
+            }
+            else
+                MoveDown();
+        }
     }
 
     private void RotateTetrimino()
     {
-        if (Input.GetKeyDown(KeyCode.W))
+        if(!fastMoveKeyPressed)
         {
-            tetrisGrid.RemoveFromGridParent(this.transform);
-            this.transform.RotateAround(transform.TransformPoint(rotationPointFromPivot), new Vector3(0f, 0f, 1f), -90f);
-            if (tetrisGrid.CheckIfGridPositionOccupied(this.transform) || !tetrominoBoundary.IsInsideBoundary(this.transform))
+            if (Input.GetKeyDown(KeyCode.W))
             {
-                this.transform.RotateAround(transform.TransformPoint(rotationPointFromPivot), new Vector3(0f, 0f, 1f), 90f);
-                tetrisGrid.AddToGridParent(this.transform);
+                tetrisGrid.RemoveFromGridParent(this.transform);
+                this.transform.RotateAround(transform.TransformPoint(rotationPointFromPivot), new Vector3(0f, 0f, 1f), -90f);
+                if (tetrisGrid.CheckIfGridPositionOccupied(this.transform) || !tetrominoBoundary.IsInsideBoundary(this.transform))
+                {
+                    this.transform.RotateAround(transform.TransformPoint(rotationPointFromPivot), new Vector3(0f, 0f, 1f), 90f);
+                    tetrisGrid.AddToGridParent(this.transform);
+                }
+                else
+                    tetrisGrid.AddToGridParent(this.transform);
             }
-            else
-                tetrisGrid.AddToGridParent(this.transform);
-
         }
     }
 
     private void MoveLeftOrRight()
     {
-        if(Input.GetKeyDown(KeyCode.A))
+        if(!fastMoveKeyPressed)
         {
-            tetrisGrid.RemoveFromGridParent(this.transform);
-            this.transform.position += new Vector3(-minoMovement.distanceToDisplaceHorizontal, 0f, 0f);
-            if (tetrisGrid.CheckIfGridPositionOccupied(this.transform) || !tetrominoBoundary.IsInsideBoundary(this.transform))
+            if (Input.GetKeyDown(KeyCode.A))
             {
-                this.transform.position += new Vector3(minoMovement.distanceToDisplaceHorizontal, 0f, 0f);
-                tetrisGrid.AddToGridParent(this.transform);
+                tetrisGrid.RemoveFromGridParent(this.transform);
+                this.transform.position += new Vector3(-minoMovement.DistanceToDisplaceHorizontal, 0f, 0f);
+                if (tetrisGrid.CheckIfGridPositionOccupied(this.transform) || !tetrominoBoundary.IsInsideBoundary(this.transform))
+                {
+                    this.transform.position += new Vector3(minoMovement.DistanceToDisplaceHorizontal, 0f, 0f);
+                    tetrisGrid.AddToGridParent(this.transform);
+                }
+                else
+                    tetrisGrid.AddToGridParent(this.transform);
             }
-            else
-                tetrisGrid.AddToGridParent(this.transform);
 
-        }
-
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            tetrisGrid.RemoveFromGridParent(this.transform);
-            this.transform.position += new Vector3(minoMovement.distanceToDisplaceHorizontal, 0f, 0f);
-            if (tetrisGrid.CheckIfGridPositionOccupied(this.transform) || !tetrominoBoundary.IsInsideBoundary(this.transform))
+            if (Input.GetKeyDown(KeyCode.D))
             {
-                this.transform.position += new Vector3(-minoMovement.distanceToDisplaceHorizontal, 0f, 0f);
-                tetrisGrid.AddToGridParent(this.transform);
+                tetrisGrid.RemoveFromGridParent(this.transform);
+                this.transform.position += new Vector3(minoMovement.DistanceToDisplaceHorizontal, 0f, 0f);
+                if (tetrisGrid.CheckIfGridPositionOccupied(this.transform) || !tetrominoBoundary.IsInsideBoundary(this.transform))
+                {
+                    this.transform.position += new Vector3(-minoMovement.DistanceToDisplaceHorizontal, 0f, 0f);
+                    tetrisGrid.AddToGridParent(this.transform);
+                }
+                else
+                    tetrisGrid.AddToGridParent(this.transform);
             }
-            else
-                tetrisGrid.AddToGridParent(this.transform);
-
         }
+        
     }
 
     //Game Over is just displayed on console, will link it to a game over scene or a panel
     /*MoveDown() will be disabled when the player has clicked a button, designed specifically for a fast move down or instant move down
       Implementing a fast move down till the animation or mechanics is complete for the desired output(move down)*/
-    private void MoveDown(bool changeCurrentTime = false)
+    private void MoveDown(bool changeCurrentTime = false,bool fastMoveKeyPressedlocal = false)
     {
         if(changeCurrentTime)
         {
@@ -129,19 +154,19 @@ public class MinoMovement : MonoBehaviour
         }
         else
         {
-            if (Time.time - currentTime >= minoMovement.minoFallDownTime)
+            if (Time.time - currentTime >= (fastMoveKeyPressedlocal ? minoMovement.MinoFallDownTime / minoMovement.MinoFastFallDownTime : minoMovement.MinoFallDownTime))
             {
                 currentTime = Time.time;
                 tetrisGrid.RemoveFromGridParent(this.transform);
-                this.transform.position += new Vector3(0f, minoMovement.distanceToDisplaceVertical, 0f);
+                this.transform.position += new Vector3(0f, minoMovement.DistanceToDisplaceVertical, 0f);
                 if (tetrisGrid.CheckIfGridPositionOccupied(this.transform) || !tetrominoBoundary.IsInsideBoundary(this.transform)) 
                 {
-                    this.transform.position += new Vector3(0f, -minoMovement.distanceToDisplaceVertical, 0f);
+                    this.transform.position += new Vector3(0f, -minoMovement.DistanceToDisplaceVertical, 0f);
                     if (!tetrominoBoundary.CheckIfGridExceed(this.transform))
                     {
                         tetrisGrid.AddToGridParent(this.transform);
-                        tetrisGrid.CheckIfRowFull();
-                        MinosSpawner.spawnMino = true;
+                        tetrisGrid.DeleteFullRowsAndRearrange();
+                        MinosSpawner.SpawnMino = true;
                         this.enabled = false;
                     }
                     else

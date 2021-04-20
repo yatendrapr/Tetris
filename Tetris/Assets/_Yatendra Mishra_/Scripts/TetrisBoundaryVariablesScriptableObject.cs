@@ -3,11 +3,20 @@
 [CreateAssetMenu(menuName = "Tetromino/Tetrimino Boundary Variables")]
 public class TetrisBoundaryVariablesScriptableObject : ScriptableObject
 {
-    //Global Variables
+    //Global Variables//
+
     //Tetris Boundary Variables
     [Header("Tetromino Boundary Variables")]
-    public float positiveXBoundary = 0;
-    public float negativeXBoundary = 0;
-    public float negativeYBoundary = 0;
-    public float positiveYBoundary = 0;
+
+    [SerializeField] private float positiveXBoundary = 0;
+    public float PositiveXBoundary { get { return positiveXBoundary; } }
+
+    [SerializeField] private float negativeXBoundary = 0;
+    public float NegativeXBoundary { get { return negativeXBoundary; } }
+
+    [SerializeField] private float negativeYBoundary = 0;
+    public float NegativeYBoundary { get { return negativeYBoundary; } }
+
+    [SerializeField] private float positiveYBoundary = 0;
+    public float PositiveYBoundary { get { return positiveYBoundary; } }
 }

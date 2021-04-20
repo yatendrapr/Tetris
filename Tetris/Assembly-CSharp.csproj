@@ -67,14 +67,14 @@
     <Compile Include="Assets\_Yatendra Mishra_\Scripts\GameController.cs" />
     <Compile Include="Assets\_Yatendra Mishra_\Scripts\GameEvent.cs" />
     <Compile Include="Assets\_Yatendra Mishra_\Scripts\GameEventListener.cs" />
-    <Compile Include="Assets\_Yatendra Mishra_\Scripts\GameScriptableObject.cs" />
     <Compile Include="Assets\_Yatendra Mishra_\Scripts\MinoMovement.cs" />
     <Compile Include="Assets\_Yatendra Mishra_\Scripts\MinoMovementVariablesScriptableObject.cs" />
     <Compile Include="Assets\_Yatendra Mishra_\Scripts\MinosSpawner.cs" />
+    <Compile Include="Assets\_Yatendra Mishra_\Scripts\ScoreScriptableObject.cs" />
     <Compile Include="Assets\_Yatendra Mishra_\Scripts\TetrisBoundaryScriptableObject.cs" />
     <Compile Include="Assets\_Yatendra Mishra_\Scripts\TetrisBoundaryVariablesScriptableObject.cs" />
     <Compile Include="Assets\_Yatendra Mishra_\Scripts\TetrisGridScriptableObject.cs" />
-    <Compile Include="Assets\_Yatendra Mishra_\Scripts\uiController.cs" />
+    <Compile Include="Assets\_Yatendra Mishra_\Scripts\UiController.cs" />
     <None Include="Assets\_Yatendra Mishra_\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\_Yatendra Mishra_\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\_Yatendra Mishra_\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />

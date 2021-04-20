@@ -2,21 +2,31 @@
 
 public class MinosSpawner : MonoBehaviour
 {
-    //Global Variable
+    //Global Variables//
+
     //Spawning Variables
-    public static bool spawnMino = true;
-    
-    //Local Variables
+    private static bool spawnMino = true;
+    public static bool SpawnMino { set { spawnMino = value; } }
+
+    //This variable will hold the index of the next mino i.e the mino that is going to spawn next
+    private static int spawnedMinoIndex = 0;
+    public static int SpawnedMinoIndex { get { return MinosSpawner.spawnedMinoIndex; } }
+
+    //Game Events
+    [SerializeField] private GameEvent tetrominoSpawnEvent = null;
+
+    //Local Variables//
+
     //Time Variables
     [SerializeField] private float spawnStartTime = 1f;
     private int spawnerCalls = 0;
-
 
     //Mino Spawning Variables
     [SerializeField] private Transform minoSpawnPoint = null;
     [SerializeField] private GameObject[] minos = null;
     private GameObject currentSpawnedMino = null;
     private GameObject nextMino = null;
+
 
     private void Update()
     {
@@ -27,13 +37,13 @@ public class MinosSpawner : MonoBehaviour
                 case 0:
                     if (Time.time >= spawnStartTime)
                     {
-                        MinosSpawner.spawnMino = false;
+                        MinosSpawner.SpawnMino = false;
                         spawnerCalls++;
                         SpawnMinoGameObject();
                     }
                     break;
                 default:
-                    MinosSpawner.spawnMino = false;
+                    MinosSpawner.SpawnMino = false;
                     spawnerCalls++;
                     SpawnMinoGameObject();
                     break;
@@ -41,7 +51,6 @@ public class MinosSpawner : MonoBehaviour
         }
     }
 
-    //Under Debugging
     private void SpawnMinoGameObject()
     {
         if(nextMino == null)
@@ -49,20 +58,21 @@ public class MinosSpawner : MonoBehaviour
             int randomValue = Random.Range(0, minos.Length);
             currentSpawnedMino = Instantiate<GameObject>(minos[randomValue], minoSpawnPoint.transform.position, Quaternion.identity);
             nextMino = GetNextMino();
-            Debug.Log(nextMino.name);
+            tetrominoSpawnEvent.RaiseEvent();
         }
         else
         {
             currentSpawnedMino = nextMino;
             nextMino.SetActive(true);
             nextMino = GetNextMino();
-            Debug.Log(nextMino.name);
+            tetrominoSpawnEvent.RaiseEvent();
         }
     }
 
     private GameObject GetNextMino()
     {
         int randomValue = Random.Range(0, minos.Length);
+        spawnedMinoIndex = randomValue;
         GameObject mino = Instantiate<GameObject>(minos[randomValue], minoSpawnPoint.transform.position, Quaternion.identity);
         mino.SetActive(false);
         return mino;

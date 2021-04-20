@@ -2,20 +2,21 @@
 
 public class GameController : MonoBehaviour
 {
-    //Global Variables
+    //Global Variables//
+
     //Scriptable Object Refrences
     [SerializeField] private TetrisGridScriptableObject TetrisGrid = null;
 
     //Game Events
-    public GameScriptableObject gameVariables = null; 
+    [SerializeField] private ScoreScriptableObject gameVariables = null; 
 
-    //Initializes the grid. Each element is initialized with null.
+    //Initializes the grid. Each element is initialized with null
     private void Start()
     {
         TetrisGrid.InitializeGrid();
     }
 
-    //Resets the grid and the grid dictonary once the game has been closed.
+    //Resets the grid and the grid dictonary once the game has been closed
     private void OnDestroy()
     {
         TetrisGrid.ResetGrid();

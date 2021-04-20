@@ -4,14 +4,16 @@ using System.Collections.Generic;
 [CreateAssetMenu(menuName = "Tetris/Tetris Grid Variables")]
 public class TetrisGridScriptableObject : ScriptableObject
 {
-    //Global Variables
+    //Global Variables//
+
     //Scriptable object references
     [SerializeField] private MinoMovementVariablesScriptableObject minoMovementScriptableObject = null;
 
     //Game Events
     [SerializeField] private GameEvent rowClearGameEvent = null;
 
-    //Local Variables
+    //Local Variables//
+
     //Grid Variables
     private const int noOfCol = 15;
     private const int noOfRow = 27;
@@ -21,11 +23,10 @@ public class TetrisGridScriptableObject : ScriptableObject
     private const int xStartingPoint = 4;
     private const int xEndPoint = 13;
 
-    //Constants
+    //Grid Constants
     private const float differenceInPosition = 0.1f;
 
     //Data Structres
-    //Grid
     private Transform[,] tetrisGrid = new Transform[noOfRow, noOfCol];
 
     public void InitializeGrid()
@@ -88,7 +89,7 @@ public class TetrisGridScriptableObject : ScriptableObject
 
     /*This function checks whether any of the rows are completly occupied, and if they are, it deletes the entire row 
       and clears the tetris grid of the points which were occupied by the full row*/
-    public void CheckIfRowFull()
+    public void DeleteFullRowsAndRearrange()
     {
         int transformCount = 0;
         //fullCount keeps track of how many rows has been cleared
@@ -142,7 +143,7 @@ public class TetrisGridScriptableObject : ScriptableObject
                     {
                         localTransform = tetrisGrid[j, k];
                         RemoveFromGridChild(tetrisGrid[j, k]);
-                        localTransform.position += new Vector3(0f, minoMovementScriptableObject.distanceToDisplaceVertical * rowsToClearMultiplier[i], 0f);
+                        localTransform.position += new Vector3(0f, minoMovementScriptableObject.DistanceToDisplaceVertical * rowsToClearMultiplier[i], 0f);
                         AddToGridChild(localTransform);
                     }
                     else

@@ -4,6 +4,8 @@ using UnityEngine;
 [CreateAssetMenu]
 public class GameEvent : ScriptableObject
 {
+    //Local Variables//
+    //Data Structres
     private List<GameEventListener> gameEventListners = new List<GameEventListener>();
 
     public void AddGameEventListener(GameEventListener gameEventListener)

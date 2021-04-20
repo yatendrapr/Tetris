@@ -3,7 +3,8 @@
 [CreateAssetMenu(fileName = "Tetromino Boundary",menuName ="Tetromino/Tetromino Boundary")]
 public class TetrisBoundaryScriptableObject : ScriptableObject
 {
-    //Global Variables
+    //Global Variables//
+
     //Scriptable Objects references
     [SerializeField] private TetrisBoundaryVariablesScriptableObject tetrisBoundary = null;
 
@@ -13,13 +14,13 @@ public class TetrisBoundaryScriptableObject : ScriptableObject
         bool _isInsideBoundary = true;
         foreach (Transform localTransform in transform)
         {
-            if ((localTransform.position.x < tetrisBoundary.negativeXBoundary)
-                || (localTransform.position.x > tetrisBoundary.positiveXBoundary))
+            if ((localTransform.position.x < tetrisBoundary.NegativeXBoundary)
+                || (localTransform.position.x > tetrisBoundary.PositiveXBoundary))
             {
                 _isInsideBoundary = false;
                 break;
             }
-            else if (localTransform.position.y < tetrisBoundary.negativeYBoundary)
+            else if (localTransform.position.y < tetrisBoundary.NegativeYBoundary)
             {
                 _isInsideBoundary = false;
                 break;
@@ -32,7 +33,7 @@ public class TetrisBoundaryScriptableObject : ScriptableObject
     {
         foreach (Transform localTransform in transform)
         {
-            if (localTransform.position.y >= tetrisBoundary.positiveYBoundary)
+            if (localTransform.position.y >= tetrisBoundary.PositiveYBoundary)
             {
                 return true;
             }
