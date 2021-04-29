@@ -74,7 +74,12 @@
     <Compile Include="Assets\_Yatendra Mishra_\Scripts\TetrisBoundaryScriptableObject.cs" />
     <Compile Include="Assets\_Yatendra Mishra_\Scripts\TetrisBoundaryVariablesScriptableObject.cs" />
     <Compile Include="Assets\_Yatendra Mishra_\Scripts\TetrisGridScriptableObject.cs" />
-    <Compile Include="Assets\_Yatendra Mishra_\Scripts\UiController.cs" />
+    <Compile Include="Assets\_Yatendra Mishra_\Scripts\Ui\GameCompleteView.cs" />
+    <Compile Include="Assets\_Yatendra Mishra_\Scripts\Ui\GameCompleteViewManager.cs" />
+    <Compile Include="Assets\_Yatendra Mishra_\Scripts\Ui\GameViewManager.cs" />
+    <Compile Include="Assets\_Yatendra Mishra_\Scripts\Ui\MainMenuViewManager.cs" />
+    <Compile Include="Assets\_Yatendra Mishra_\Scripts\Ui\OptionsView.cs" />
+    <Compile Include="Assets\_Yatendra Mishra_\Scripts\Ui\OptionsViewManager.cs" />
     <None Include="Assets\_Yatendra Mishra_\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\_Yatendra Mishra_\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\_Yatendra Mishra_\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />

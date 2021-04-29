@@ -1,8 +1,16 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
-[CreateAssetMenu(menuName ="Game/Score Variables")]
+[CreateAssetMenu(menuName = "Game/Score Variables")]
 public class ScoreScriptableObject : ScriptableObject
 {
+
+    //Global Variables//
+
+    //High Score Variables
+    private bool newHighScoreReached = false;
+    public bool NewHighScoreReached { get { return newHighScoreReached; } }
+
     //Local Variables//
 
     //Score Variables
@@ -20,13 +28,27 @@ public class ScoreScriptableObject : ScriptableObject
         CheckHighScore();
     }
 
-    public void ResetCurrentScore()
+    public void ResetScoreVariables()
     {
-        CurrentSessionScore = 0;
+        currentSessionScore = 0;
     }
 
     private void CheckHighScore()
     {
-        highestScore = (CurrentSessionScore > highestScore) ? CurrentSessionScore : highestScore;
+        if (currentSessionScore > highestScore)
+        {
+            highestScore = currentSessionScore;
+            newHighScoreReached = true;
+        }
+    }
+
+    public void SetNewHighScoreReached(bool value)
+    {
+        newHighScoreReached = value;
+    }
+
+    public bool CheckIfNewHighScoreReached()
+    {
+        return newHighScoreReached;
     }
 }

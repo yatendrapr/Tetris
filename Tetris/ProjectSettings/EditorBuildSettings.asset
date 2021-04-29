@@ -9,9 +9,21 @@ EditorBuildSettings:
     path: Assets/_Yatendra Mishra_/Scenes/Main Menu.unity
     guid: fa57b3684644b644ea29d5035455e70c
   - enabled: 1
+    path: Assets/_Yatendra Mishra_/Scenes/Options.unity
+    guid: 6421d8b2ca64cfe4591e570d85b287a3
+  - enabled: 1
+    path: Assets/_Yatendra Mishra_/Scenes/Options UI.unity
+    guid: 74a5f48a2bd641549a9a2e60bedbb03a
+  - enabled: 1
     path: Assets/_Yatendra Mishra_/Scenes/Game Scene.unity
     guid: 042fba072bdc0a1478bf2565e652e04c
   - enabled: 1
-    path: Assets/_Yatendra Mishra_/Scenes/Options.unity
-    guid: 810dd97a1fd187d4a99a5d1ee206381d
+    path: Assets/_Yatendra Mishra_/Scenes/Game UI.unity
+    guid: ef12f6c2f79af9a4c943b3622cc43108
+  - enabled: 1
+    path: Assets/_Yatendra Mishra_/Scenes/Game Complete.unity
+    guid: ee47a8e595b75fa4695247c527836e74
+  - enabled: 1
+    path: Assets/_Yatendra Mishra_/Scenes/Game Complete UI.unity
+    guid: 1fbf7ab5122ae134fbc8b91f32cbcef3
   m_configObjects: {}

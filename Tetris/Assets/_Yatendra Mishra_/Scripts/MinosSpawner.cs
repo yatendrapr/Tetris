@@ -19,6 +19,7 @@ public class MinosSpawner : MonoBehaviour
 
     //Time Variables
     [SerializeField] private float spawnStartTime = 1f;
+    private float currentSpawnTime = 0f;
     private int spawnerCalls = 0;
 
     //Mino Spawning Variables
@@ -27,6 +28,13 @@ public class MinosSpawner : MonoBehaviour
     private GameObject currentSpawnedMino = null;
     private GameObject nextMino = null;
 
+    /*Current time is set to 0 here because, when the game start from Main Menu the 
+     elapsed time has already crossed spawnStartTime*/
+    private void Awake()
+    {
+        currentSpawnTime = Time.time;
+        MinosSpawner.spawnMino = true;
+    }
 
     private void Update()
     {
@@ -35,7 +43,7 @@ public class MinosSpawner : MonoBehaviour
             switch(spawnerCalls)
             {
                 case 0:
-                    if (Time.time >= spawnStartTime)
+                    if ((Time.time - currentSpawnTime) >= spawnStartTime)
                     {
                         MinosSpawner.SpawnMino = false;
                         spawnerCalls++;
