@@ -3,8 +3,11 @@
 [CreateAssetMenu(menuName = "Tetromino/Tetrimino Boundary Variables")]
 public class TetrisBoundaryVariablesScriptableObject : ScriptableObject
 {
-    //Global Variables//
 
+    #region Data Members
+
+    #region Global Variables
+    
     //Tetris Boundary Variables
     [Header("Tetromino Boundary Variables")]
 
@@ -19,4 +22,9 @@ public class TetrisBoundaryVariablesScriptableObject : ScriptableObject
 
     [SerializeField] private float positiveYBoundary = 0;
     public float PositiveYBoundary { get { return positiveYBoundary; } }
+
+    #endregion
+
+    #endregion
+
 }

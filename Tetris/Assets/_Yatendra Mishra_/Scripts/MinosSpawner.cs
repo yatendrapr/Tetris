@@ -2,8 +2,11 @@
 
 public class MinosSpawner : MonoBehaviour
 {
-    //Global Variables//
 
+    #region Data Members
+
+    #region Global Variables
+    
     //Spawning Variables
     private static bool spawnMino = true;
     public static bool SpawnMino { set { spawnMino = value; } }
@@ -12,22 +15,33 @@ public class MinosSpawner : MonoBehaviour
     private static int spawnedMinoIndex = 0;
     public static int SpawnedMinoIndex { get { return MinosSpawner.spawnedMinoIndex; } }
 
+    [Header("Events")]
     //Game Events
     [SerializeField] private GameEvent tetrominoSpawnEvent = null;
 
-    //Local Variables//
+    #endregion
 
+    #region Local Variables
+    
+    [Header("Time Variables")]
     //Time Variables
     [SerializeField] private float spawnStartTime = 1f;
     private float currentSpawnTime = 0f;
     private int spawnerCalls = 0;
 
+    [Header("Mino Spawning Variables")]
     //Mino Spawning Variables
     [SerializeField] private Transform minoSpawnPoint = null;
     [SerializeField] private GameObject[] minos = null;
     private GameObject currentSpawnedMino = null;
     private GameObject nextMino = null;
 
+    #endregion
+
+    #endregion
+
+    #region Unity Methods
+    
     /*Current time is set to 0 here because, when the game start from Main Menu the 
      elapsed time has already crossed spawnStartTime*/
     private void Awake()
@@ -59,6 +73,10 @@ public class MinosSpawner : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region Member Functions
+
     private void SpawnMinoGameObject()
     {
         if(nextMino == null)
@@ -85,4 +103,7 @@ public class MinosSpawner : MonoBehaviour
         mino.SetActive(false);
         return mino;
     }
+
+    #endregion
+
 }

@@ -1,29 +1,41 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameCompleteViewManager : MonoBehaviour
 {
+
     #region Data Members
 
-    //Global Variables//
+    #region Global Variables
 
-    [Header("Scriptable Objects")]
+    [Header("Scriptable Objects References")]
     //Scriptable Object References
     [SerializeField] private ScoreScriptableObject scoreVariable = null;
+
+    [Header("UI References")]
+    [SerializeField] private TMP_InputField highestScorerNameInputField = null;
+    [SerializeField] private TextMeshProUGUI highestScoreText = null;
+    [SerializeField] private Button okButton = null;
 
     //Views References
     [Header("Views References")]
     [SerializeField] private GameCompleteView gameOverView = null;
     [SerializeField] private GameCompleteView gameOverViewNewHighScoreView = null;
 
-    //Local Variables//
+    #endregion
+
+    #region Local Variables
 
     //Local View References
     private GameCompleteView currentGameCompleteView = null;
 
     #endregion
 
-    #region Unity Messages
+    #endregion
+
+    #region Unity Methods
 
     private void Awake()
     {
@@ -31,6 +43,7 @@ public class GameCompleteViewManager : MonoBehaviour
         {
             AssignAndActiveCurrentView(gameOverViewNewHighScoreView);
             scoreVariable.SetNewHighScoreReached(false);
+            highestScoreText.text = $"New High Score \n\n  {scoreVariable.GetHighestScore()}";
         }
         else
         {
@@ -56,5 +69,14 @@ public class GameCompleteViewManager : MonoBehaviour
         gameCompleteView.gameObject.SetActive(true);
         currentGameCompleteView = gameCompleteView;
     }
+
+    public void HighestScoreButtonPressed()
+    {
+        scoreVariable.HighestScorerName = highestScorerNameInputField.text.ToString();
+        okButton.enabled = false;
+        highestScorerNameInputField.enabled = false;
+    }
+
     #endregion
+
 }

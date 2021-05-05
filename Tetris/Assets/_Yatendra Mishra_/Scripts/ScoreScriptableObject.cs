@@ -1,26 +1,41 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 
 [CreateAssetMenu(menuName = "Game/Score Variables")]
 public class ScoreScriptableObject : ScriptableObject
 {
 
-    //Global Variables//
+    #region Data Members
+
+    #region Local Variables
 
     //High Score Variables
     private bool newHighScoreReached = false;
     public bool NewHighScoreReached { get { return newHighScoreReached; } }
-
-    //Local Variables//
 
     //Score Variables
     private int currentSessionScore = 0;
     public int CurrentSessionScore { get { return currentSessionScore; } set { currentSessionScore = value; } }
 
     [Header("Score Variables")]
-    [SerializeField] private int highestScore = 0;
+    private int highestScore = 0;
     [Tooltip("The amount of points given for a sucessful row clear")]
     [SerializeField] private int rowClearPoints = 0;
+
+    private string highestScorerName = null;
+    public string HighestScorerName { get => highestScorerName; set => highestScorerName = value; }
+
+    #endregion
+
+    #endregion
+
+    #region Unity Methods
+
+    //Hideflags is used so that the data persists through different scenes
+    private void OnEnable() => hideFlags = HideFlags.DontUnloadUnusedAsset;
+
+    #endregion
+
+    #region Member Functions
 
     public void AddScore()
     {
@@ -28,10 +43,7 @@ public class ScoreScriptableObject : ScriptableObject
         CheckHighScore();
     }
 
-    public void ResetScoreVariables()
-    {
-        currentSessionScore = 0;
-    }
+    public void ResetScoreVariables() => currentSessionScore = 0;
 
     private void CheckHighScore()
     {
@@ -42,13 +54,20 @@ public class ScoreScriptableObject : ScriptableObject
         }
     }
 
-    public void SetNewHighScoreReached(bool value)
+    public void SetNewHighScoreReached(bool value) => newHighScoreReached = value;
+
+    public bool CheckIfNewHighScoreReached() => newHighScoreReached;
+
+    public int GetHighestScore() => highestScore;
+
+    public bool CheckIfHighScoreMade()
     {
-        newHighScoreReached = value;
+        if (highestScore == 0)
+            return false;
+        else
+            return true;
     }
 
-    public bool CheckIfNewHighScoreReached()
-    {
-        return newHighScoreReached;
-    }
+    #endregion
+
 }

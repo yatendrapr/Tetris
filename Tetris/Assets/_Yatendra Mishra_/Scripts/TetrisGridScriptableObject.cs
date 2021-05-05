@@ -4,15 +4,20 @@ using System.Collections.Generic;
 [CreateAssetMenu(menuName = "Tetris/Tetris Grid Variables")]
 public class TetrisGridScriptableObject : ScriptableObject
 {
-    //Global Variables//
 
-    //Scriptable object references
+    #region Data Members
+
+    #region Global Variables
+
+    //Scriptable Objects Reference
     [SerializeField] private MinoMovementVariablesScriptableObject minoMovementScriptableObject = null;
 
     //Game Events
     [SerializeField] private GameEvent rowClearGameEvent = null;
 
-    //Local Variables//
+    #endregion
+
+    #region Local Variables
 
     //Grid Variables
     private const int noOfCol = 15;
@@ -29,6 +34,12 @@ public class TetrisGridScriptableObject : ScriptableObject
     //Data Structres
     private Transform[,] tetrisGrid = new Transform[noOfRow, noOfCol];
 
+    #endregion
+
+    #endregion
+
+    #region Member Functions
+    
     public void InitializeGrid()
     {
         for (int i = 0; i < noOfRow; i++)
@@ -227,21 +238,6 @@ public class TetrisGridScriptableObject : ScriptableObject
         return ((higherValue - value) < differenceInPosition) ? higherValue : (int)value;
     }
 
-    //Made for debugging purposes. It gives the count of how many transforms are occupying grid point in the tetris grid.
-    private void CheckGridOccupationCount()
-    {
-        int count = 0;
-        for (int i = 0; i < noOfRow; i++)
-        {
-            for (int j = 4; j <= (noOfCol - 2); j++)
-            {
-                if (tetrisGrid[i, j] != null)
-                    count++;
-            }
-        }
-        Debug.Log(count);
-    }
-
     public void ResetGrid()
     {
         for (int i = 0; i < noOfRow; i++)
@@ -252,5 +248,7 @@ public class TetrisGridScriptableObject : ScriptableObject
             }
         }
     }
+
+    #endregion
 
 }

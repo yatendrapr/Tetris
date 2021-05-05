@@ -2,17 +2,24 @@
 
 public class MinoMovement : MonoBehaviour
 {
-    //Global Variables//
 
+    #region Data Members
+
+    #region Global Variables
+
+    [Header("Scriptable Objects References")]
     //Scriptable Objects Refrences
     [SerializeField] private MinoMovementVariablesScriptableObject minoMovement = null;
     [SerializeField] private TetrisGridScriptableObject tetrisGrid = null;
     [SerializeField] private TetrisBoundaryScriptableObject tetrominoBoundary = null;
 
+    [Header("Events")]
     //Game Event 
     [SerializeField] private GameEvent gameOverEvent = null;
 
-    //Local Variables//
+    #endregion
+
+    #region Local Variables
 
     //Time Variable
     private float currentTime = 0f;
@@ -22,6 +29,12 @@ public class MinoMovement : MonoBehaviour
 
     //Fast Move key Variables
     private bool fastMoveKeyPressed = false;
+
+    #endregion
+
+    #endregion
+
+    #region Unity Methods
 
     /*Current time is initialized here, because by the time the spawner spawns a mino the move down time has already started, 
     and the mino will go down one unit as soon as it spawns*/
@@ -44,6 +57,10 @@ public class MinoMovement : MonoBehaviour
         MoveLeftOrRight();
     }
 
+    #endregion
+
+    #region Member Functions
+    
     private void CheckForFastMoveDown()
     {
         if (Input.GetKey(KeyCode.Space))
@@ -143,9 +160,6 @@ public class MinoMovement : MonoBehaviour
         
     }
 
-    //Game Over is just displayed on console, will link it to a game over scene or a panel
-    /*MoveDown() will be disabled when the player has clicked a button, designed specifically for a fast move down or instant move down
-      Implementing a fast move down till the animation or mechanics is complete for the desired output(move down)*/
     private void MoveDown(bool changeCurrentTime = false,bool fastMoveKeyPressedlocal = false)
     {
         if(changeCurrentTime)
@@ -179,5 +193,7 @@ public class MinoMovement : MonoBehaviour
             }
         }
     }
+
+    #endregion
 
 }

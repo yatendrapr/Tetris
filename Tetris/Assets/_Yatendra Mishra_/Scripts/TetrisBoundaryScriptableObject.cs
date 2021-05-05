@@ -3,10 +3,19 @@
 [CreateAssetMenu(fileName = "Tetromino Boundary",menuName ="Tetromino/Tetromino Boundary")]
 public class TetrisBoundaryScriptableObject : ScriptableObject
 {
-    //Global Variables//
 
-    //Scriptable Objects references
+    #region Data Members
+
+    #region Global Variables
+
+    //Scriptable Objects reference
     [SerializeField] private TetrisBoundaryVariablesScriptableObject tetrisBoundary = null;
+
+    #endregion
+
+    #endregion
+
+    #region Member Functions
 
     //This function checks whether the current position of the tetromino(tetromino's children) are inside boundary
     public bool IsInsideBoundary(Transform transform)
@@ -40,4 +49,7 @@ public class TetrisBoundaryScriptableObject : ScriptableObject
         }
         return false;
     }
+
+    #endregion
+
 }

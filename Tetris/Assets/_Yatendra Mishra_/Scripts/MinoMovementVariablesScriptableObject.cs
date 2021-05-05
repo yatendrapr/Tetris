@@ -3,10 +3,13 @@
 [CreateAssetMenu(menuName = "Tetromino/Tetrimino Movement Variables")]
 public class MinoMovementVariablesScriptableObject : ScriptableObject
 {
-    //Global Variables//
 
-    //Mino Movement Variable
+    #region Data Members
+
+    #region Global Variables
+
     [Header("Tetrimino Movement Variables")]
+    //Mino Movement Variable
 
     [SerializeField] private float minoFallDownTime = 0;
     public float MinoFallDownTime { get { return minoFallDownTime; } }
@@ -21,4 +24,9 @@ public class MinoMovementVariablesScriptableObject : ScriptableObject
 
     [SerializeField] private int minoFastFallDownTime = 0;
     public int MinoFastFallDownTime { get { return minoFastFallDownTime; } }
+
+    #endregion
+
+    #endregion
+
 }

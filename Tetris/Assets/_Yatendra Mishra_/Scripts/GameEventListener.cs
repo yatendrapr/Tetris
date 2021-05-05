@@ -3,13 +3,23 @@ using UnityEngine.Events;
 
 public class GameEventListener : MonoBehaviour
 {
-    //Global Variables//
 
+    #region Data Members
+
+    #region Global Variables
+
+    [Header("Events")]
     //Game Event
     [SerializeField] private GameEvent gameEvent = null;
 
     //Unity Event
     [SerializeField] private UnityEvent unityEvent = null;
+
+    #endregion
+
+    #endregion
+
+    #region Unity Methods
 
     private void OnEnable()
     {
@@ -21,8 +31,15 @@ public class GameEventListener : MonoBehaviour
         gameEvent.RemoveGameEventListener(this);
     }
 
+    #endregion
+
+    #region Member Functions
+    
     public void OnEventRaised()
     {
         unityEvent.Invoke();
     }
+
+    #endregion
+
 }

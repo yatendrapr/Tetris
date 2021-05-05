@@ -12,5 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6ac18346c68cce4289c0a93d3c95cb8, type: 3}
   m_Name: Game Variables
   m_EditorClassIdentifier: 
-  highestScore: 50
   rowClearPoints: 10

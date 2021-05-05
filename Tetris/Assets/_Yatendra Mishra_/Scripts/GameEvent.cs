@@ -4,9 +4,19 @@ using UnityEngine;
 [CreateAssetMenu]
 public class GameEvent : ScriptableObject
 {
-    //Local Variables//
+
+    #region Data Members
+
+    #region Local Variables
+
     //Data Structres
     private List<GameEventListener> gameEventListners = new List<GameEventListener>();
+
+    #endregion
+
+    #endregion
+
+    #region Member Function
 
     public void AddGameEventListener(GameEventListener gameEventListener)
     {
@@ -25,4 +35,7 @@ public class GameEvent : ScriptableObject
             gameEventListners[i].OnEventRaised();
         }
     }
+
+    #endregion
+
 }

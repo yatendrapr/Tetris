@@ -292,14 +292,14 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 14
-  m_fontSizeBase: 14
+  m_fontSize: 98.3
+  m_fontSizeBase: 98.3
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_textAlignment: 257
+  m_textAlignment: 513
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -1191,9 +1191,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 345c47d4f2591994e9005ec8d45a890f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkLeaderBoardEvent: {fileID: 11400000, guid: d7ea81ffc1ed0c9468dc260d018d4d20,
-    type: 2}
   scoreVariable: {fileID: 11400000, guid: 1e24c58ed472e6344a87ff495702aeca, type: 2}
+  highestScorerNameInputField: {fileID: 1668951453}
+  highestScoreText: {fileID: 1823454025}
+  okButton: {fileID: 1383088195}
   gameOverView: {fileID: 142047099}
   gameOverViewNewHighScoreView: {fileID: 835028501}
 --- !u!1 &1184632087
@@ -1566,7 +1567,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1383088196}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 992501336}
+        m_MethodName: HighestScoreButtonPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1383088196
 MonoBehaviour:
   m_ObjectHideFlags: 0

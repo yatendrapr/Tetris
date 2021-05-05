@@ -1,25 +1,32 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class OptionsViewManager : MonoBehaviour
 {
 
     #region Data Members
 
-    //Global Variables//
-
+    #region Global Variables
+    
     [Header("UI References")]
     //Button References
     [SerializeField] private Button soundButton = null;
     [SerializeField] private Button highscoreButton = null;
     [SerializeField] private Button creditButton = null;
+    [SerializeField] private Button controlsButton = null;
+    [SerializeField] private TextMeshProUGUI highestScoreText = null;
 
     [Header("View References")]
     //View References
     [SerializeField] private OptionsView soundView = null;
     [SerializeField] private OptionsView highscoreView = null;
     [SerializeField] private OptionsView creditView = null;
+    [SerializeField] private OptionsView controlsView = null;
+
+    [Header("Scriptable Object References")]
+    [SerializeField] private ScoreScriptableObject scoreScriptableObject = null;
 
     [Header("Start Button and View")]
     [Space][SerializeField] private OptionsView startView = null;
@@ -28,7 +35,9 @@ public class OptionsViewManager : MonoBehaviour
     [Header("Options View Offset")]
     [SerializeField] private float yAxisOffset = 0f;
 
-    //Local Variables//
+    #endregion
+
+    #region Local Variables
 
     //Data Structers
     private OptionsView[] views = null;
@@ -44,16 +53,26 @@ public class OptionsViewManager : MonoBehaviour
     //Color Variables
     [SerializeField] private ColorBlock highlightedColorBlock = ColorBlock.defaultColorBlock;
     private ColorBlock defaultHighlightedColorBlock = ColorBlock.defaultColorBlock;
-    
 
     #endregion
 
-    #region Unity Messages
+    #endregion
+
+    #region Unity Methods
 
     private void Awake()
     {
         views = transform.GetComponentsInChildren<OptionsView>(true);
         AssignAndActiveCurrentView(startView);
+        if(scoreScriptableObject.CheckIfHighScoreMade())
+        {
+            highestScoreText.text = $"Name - \n {scoreScriptableObject.HighestScorerName} \n" +
+                                $"Score - \n {scoreScriptableObject.GetHighestScore()}";
+        }
+        else
+        {
+            highestScoreText.text = "No Score made yet!";
+        }
         HighLightButtonAndView(startButton, startView);
     }
 
@@ -72,6 +91,13 @@ public class OptionsViewManager : MonoBehaviour
         DisableAllViews();
         AssignAndActiveCurrentView(soundView);
         HighLightButtonAndView(soundButton,soundView);
+    }
+
+    public void DisplayControlsView()
+    {
+        DisableAllViews();
+        AssignAndActiveCurrentView(controlsView);
+        HighLightButtonAndView(controlsButton, controlsView);
     }
 
     public void DisplayHighScoreView()

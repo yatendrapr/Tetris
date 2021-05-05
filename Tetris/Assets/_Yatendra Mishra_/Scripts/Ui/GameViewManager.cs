@@ -7,8 +7,9 @@ public class GameViewManager : MonoBehaviour
 {
 
     #region Data Members
-    //Global Varibles//
 
+    #region Global Variables
+    
     //Scriptable Object Refrences
     [Header("Scriptable Object References")]
     [SerializeField] private ScoreScriptableObject scoreVariables = null;
@@ -22,6 +23,8 @@ public class GameViewManager : MonoBehaviour
     //Data Structres
     [Header("TetroMino Images")]
     [SerializeField] private Sprite[] tetroMinoImages = null;
+
+    #endregion
 
     #endregion
 
