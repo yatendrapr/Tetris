@@ -132,6 +132,8 @@ MonoBehaviour:
   tetrisGrid: {fileID: 11400000, guid: c09696c075904b14abc93ab0bae04a98, type: 2}
   tetrominoBoundary: {fileID: 11400000, guid: ef8717b7d5b8925489ca0ee46824fbed, type: 2}
   gameOverEvent: {fileID: 11400000, guid: 542f3c1afb5f0eb4eb1383e25684ba8e, type: 2}
+  tetrominoFallDownEvent: {fileID: 11400000, guid: e9d8ce18293236047a4bf6a59fef54e7,
+    type: 2}
   rotationPointFromPivot: {x: 0, y: 0, z: 0}
 --- !u!1 &8140896370352270438
 GameObject:

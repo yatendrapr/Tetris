@@ -12,7 +12,6 @@ public class OptionsViewManager : MonoBehaviour
     
     [Header("UI References")]
     //Button References
-    [SerializeField] private Button soundButton = null;
     [SerializeField] private Button highscoreButton = null;
     [SerializeField] private Button creditButton = null;
     [SerializeField] private Button controlsButton = null;
@@ -20,7 +19,6 @@ public class OptionsViewManager : MonoBehaviour
 
     [Header("View References")]
     //View References
-    [SerializeField] private OptionsView soundView = null;
     [SerializeField] private OptionsView highscoreView = null;
     [SerializeField] private OptionsView creditView = null;
     [SerializeField] private OptionsView controlsView = null;
@@ -85,13 +83,6 @@ public class OptionsViewManager : MonoBehaviour
     #endregion
 
     #region Member Functions
-
-    public void DisplaySoundView()
-    {
-        DisableAllViews();
-        AssignAndActiveCurrentView(soundView);
-        HighLightButtonAndView(soundButton,soundView);
-    }
 
     public void DisplayControlsView()
     {

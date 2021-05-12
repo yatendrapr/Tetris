@@ -71,6 +71,7 @@
     <Compile Include="Assets\_Yatendra Mishra_\Scripts\MinoMovementVariablesScriptableObject.cs" />
     <Compile Include="Assets\_Yatendra Mishra_\Scripts\MinosSpawner.cs" />
     <Compile Include="Assets\_Yatendra Mishra_\Scripts\ScoreScriptableObject.cs" />
+    <Compile Include="Assets\_Yatendra Mishra_\Scripts\SoundManagerSingleton.cs" />
     <Compile Include="Assets\_Yatendra Mishra_\Scripts\TetrisBoundaryScriptableObject.cs" />
     <Compile Include="Assets\_Yatendra Mishra_\Scripts\TetrisBoundaryVariablesScriptableObject.cs" />
     <Compile Include="Assets\_Yatendra Mishra_\Scripts\TetrisGridScriptableObject.cs" />

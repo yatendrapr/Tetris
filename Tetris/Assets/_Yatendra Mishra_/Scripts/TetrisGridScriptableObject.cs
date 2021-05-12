@@ -116,6 +116,7 @@ public class TetrisGridScriptableObject : ScriptableObject
             }
             if (transformCount == 10)
             {
+
                 fullCount++;
                 clearedRow.Add(i);
                 //This loop deletes the entire row//
